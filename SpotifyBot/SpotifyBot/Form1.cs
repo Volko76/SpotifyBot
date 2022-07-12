@@ -15,6 +15,7 @@ namespace SpotifyBot
     public partial class Form1 : Form
     {
         string spotifyPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Spotify\\Spotify.exe";
+        string openVpnPath = "C:\\Program Files\\OpenVPN\\bin\\openvpn-gui.exe";
         Click c = new Click();
         Point point = new Point();
 
@@ -27,6 +28,11 @@ namespace SpotifyBot
             {
                 InstallSpotify();
             }
+            if (!File.Exists(openVpnPath))
+            {
+                InstallOpenVpn();
+            }
+
         }
 
         private void btnResearch_Click(object sender, EventArgs e)
@@ -53,38 +59,7 @@ namespace SpotifyBot
             point.X = 673;
             point.Y = 372;
             c.leftClick(point);
-            /*
-            SendKeys.SendWait("{TAB}");
-            Thread.Sleep(1000);
-            SendKeys.SendWait("{ENTER}");
-            Thread.Sleep(500);
-            SendKeys.SendWait("{TAB}");
-            
-            Thread.Sleep(500);
-            SendKeys.SendWait("{ENTER}");
-            Thread.Sleep(500);
-            SendKeys.SendWait("^(r)");
-            
-            Thread.Sleep(1000);
-            SendKeys.SendWait("{TAB}");
-            Thread.Sleep(1000);
-            SendKeys.SendWait("{ENTER}");
-            */
-
-            //string strCmdText = spotifyPath;
-            //var proc = new Process
-            //{
-            //    StartInfo = new ProcessStartInfo
-            //    {
-            //        FileName = spotifyPath,
-            //        Arguments = "",
-            //        UseShellExecute = false,
-            //        RedirectStandardOutput = true,
-            //        CreateNoWindow = true,
-            //        WorkingDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
-            //    }
-            //};
-            //proc.Start();
+           
         }
         [DllImport("user32.dll")]
         static extern bool SetForegroundWindow(IntPtr hWnd);
@@ -177,6 +152,23 @@ namespace SpotifyBot
                 client.DownloadFile("https://download.scdn.co/SpotifySetup.exe", "spotifyInstaller.exe");
             }
             Process.Start("spotifyInstaller.exe");
+        }
+
+        void InstallOpenVpn()  
+        {
+            MessageBox.Show("Nous allons installer OpenVPN dans le bon répertoire pour le bon fonctionnement du programme...");
+            using (var client = new System.Net.WebClient())
+            {
+                client.DownloadFile("https://swupdate.openvpn.org/community/releases/OpenVPN-2.5.7-I602-amd64.msi", "openvpnInstaller.msi");
+            }
+            Process.Start("openvpnInstaller.msi");
+            Thread.Sleep(1000);
+            SendKeys.SendWait("{ENTER}");
+            Thread.Sleep(30000);
+            ActivateApp("OpenVPN 2.5.7-I602");
+            SendKeys.SendWait("{ENTER}");
+            
+            //Setup OpenVPN 2.5.7-I602
         }
 
     }
