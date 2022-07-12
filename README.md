@@ -10,10 +10,13 @@ Limitations (pour l'instant):
 Ce sont des choses à eviter pour le bon fonctionnement du programme, mais cela peut fonctionner quand meme
 
 Fonctionnalités :
-  Installation de Spotify dans le bon répertoire
-  S'adapte à tout les windows
+  Installation de Spotify et OpenVPN dans le bon répertoire
   Pas besoin de l'API de spotify
   Compatible VPN (via OpenVPN)
+  Facile à prendre en main (3 boutons et une entry box)
+  Met automatiquement les musiques en mode "a repeter"
   
-Limitations actuelles:
+  
+Correctifs :
+  1.0 Probleme du mélange Chanteur/Chanson réglé - Probleme des chemins d'accès personnels réglé 
   
