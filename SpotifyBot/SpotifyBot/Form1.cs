@@ -1,25 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using WindowsInput;
+using WindowsInput.Native;
 
 namespace SpotifyBot
 {
-    
+
     public partial class Form1 : Form
     {
         string spotifyPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Spotify\\Spotify.exe";
-        
+        Click c = new Click();
+        Point point = new Point();
+
 
         public Form1()
         {
@@ -39,7 +37,7 @@ namespace SpotifyBot
             ActivateApp("Spotify");
             p.WaitForInputIdle();
             //System.Threading.Thread.Sleep(2000);
-            
+
 
             SendKeys.SendWait("^(l)");
             Thread.Sleep(1000);
@@ -47,10 +45,15 @@ namespace SpotifyBot
             SendKeys.SendWait(tbResearch.Text);
             Thread.Sleep(1000);
 
- 
+
             SendKeys.SendWait("{ENTER}");
             Thread.Sleep(1000);
-
+            var simu = new InputSimulator();
+            simu.Keyboard.ModifiedKeyStroke(VirtualKeyCode.LWIN, VirtualKeyCode.UP);
+            point.X = 673;
+            point.Y = 372;
+            c.leftClick(point);
+            /*
             SendKeys.SendWait("{TAB}");
             Thread.Sleep(1000);
             SendKeys.SendWait("{ENTER}");
@@ -59,7 +62,9 @@ namespace SpotifyBot
             
             Thread.Sleep(500);
             SendKeys.SendWait("{ENTER}");
-            /*
+            Thread.Sleep(500);
+            SendKeys.SendWait("^(r)");
+            
             Thread.Sleep(1000);
             SendKeys.SendWait("{TAB}");
             Thread.Sleep(1000);
@@ -105,7 +110,7 @@ namespace SpotifyBot
             {
                 string selectedFileName = openFileDialog1.FileName;
                 //Process.Start("C:\\Program Files\\OpenVPN\\bin\\openvpn.exe", "--config " + selectedFileName + " --daemon");
-                MessageBox.Show("--connect " + Path.GetFileName(selectedFileName));
+                //MessageBox.Show("--connect " + Path.GetFileName(selectedFileName));
                 var proc = new Process
                 {
                     StartInfo = new ProcessStartInfo
@@ -127,8 +132,8 @@ namespace SpotifyBot
         {
 
         }
-        
-    
+
+
         private void button2_Click(object sender, EventArgs e)
         {
             Process.Start(spotifyPath);
@@ -173,5 +178,6 @@ namespace SpotifyBot
             }
             Process.Start("spotifyInstaller.exe");
         }
+
     }
 }
