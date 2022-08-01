@@ -19,4 +19,5 @@ Fonctionnalités :
   
 Correctifs :
   1.0 Probleme du mélange Chanteur/Chanson réglé - Probleme des chemins d'accès personnels réglé 
+  1.1 Le programme vise désormait le bouton play au lieu de se reperer via des selections tab
   
