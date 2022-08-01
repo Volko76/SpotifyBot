@@ -1,0 +1,12 @@
+
+START - automation started - Mon Aug 01 2022 23:25:58 GMT+0200 (Paris, Madrid (heure d’été))
+
+LIVE MODE - type done to quit
+ [RPA][STARTED]
+[RPA][0] - listening for inputs
+[RPA][1] - exist_result = exist('playspotify.png').toString()
+[RPA][1] - listening for inputs
+[RPA][2] - dump exist_result to rpa_python.txt
+[RPA][2] - listening for inputs
+[RPA][3] - click playspotify.png
+[RPA][3] - listening for inputs
